@@ -1,0 +1,47 @@
+/*color name from https://www.htmlcsscolor.com/hex/FF3A00*/
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Roboto";
+  font-display: swap;
+  src: url("./fonts/roboto-regular.woff2") format("woff2")
+}
+:root {
+  --white: #ffffff;
+  --black: #181818;
+  --dodger-blue: #2196F3;
+  --dodger-blue-1: #1E88E5;
+  --cinnabar: #F24E1E;
+  --orange-red: #FF3A00;
+  --font-roboto: "Roboto", "Arial", sans-serif;
+}
+/*fonts*/
+
+/* semantic color variables for this project */
+:root {
+
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--black);
+  background: var(--white);
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.6;
+  font-family: var(--font-roboto);
+  font-size: 14px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
