@@ -3,7 +3,7 @@
     <app-container>
       <ul class="header__list">
         <li class="header__item">
-          <router-link :to="{ name: 'home' }" exact class="header__link"
+          <router-link :to="{ name: 'allKitty' }" exact class="header__link"
             >Все котики</router-link
           >
         </li>

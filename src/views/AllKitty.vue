@@ -3,7 +3,7 @@
     <app-container>
       <h1>Здесь все котики</h1>
       <ul class="kitty-list">
-        <li v-for="card in list">
+        <li v-for="card in storeKittiesList.kittiesList" :key="card.id">
           <app-card :elem="card"></app-card>
         </li>
       </ul>
@@ -12,24 +12,21 @@
   </main>
 </template>
 
-<script lang="js">
+<script setup>
 import AppContainer from "../components/AppContainer.vue";
 import AppCard from '../components/AppCard.vue'
 import {useKittyStore} from '../stores/KittiesStore'
-export default {
-  name: 'home',
-  components: {
-    AppContainer,
-    AppCard
-  },
-  setup() {
-    const store = useKittyStore()
-    const list = store.getKitties()
-    return {
-      list
-    }
-  }
+import {onMounted} from "vue";
+const storeKittiesList = useKittyStore()
 
+
+onMounted(async ()=>{
+  storeKittiesList.getKitties()
+})
+</script>
+<script>
+export default {
+  name: 'all-kitty'
 }
 </script>
 <style lang="scss">

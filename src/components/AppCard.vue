@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img :src="elem.img" :alt="elem.name" />
+    <img :src="elem.url" alt="Котик" :width="elem.width" :height="elem.height"/>
     <button aria-label="heart" class="card__btn">
       <icon-heart :state="stateHeart"></icon-heart>
     </button>
