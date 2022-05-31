@@ -29,7 +29,6 @@ function getMoreKitty() {
 }
 
 const kittyList = ref(null);
-const observer = new IntersectionObserver(getMoreKitty, {});
 
 </script>
 <script>
