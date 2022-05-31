@@ -2,12 +2,12 @@
   <main>
     <app-container>
       <h1 class="visually-hidden">Здесь все котики</h1>
-      <ul class="kitty-list">
+      <ul class="kitty-list" ref="kittyList">
         <li v-for="card in storeKitties.kittiesList" :key="card.id">
           <app-card :elem="card"></app-card>
         </li>
       </ul>
-      <button class="more-btn" @click.prevent="getMoreKitty">... загружаем еще котиков ...</button>
+      <button v-if="storeKitties.kittiesList.length > 0" class="more-btn" @click.prevent="getMoreKitty">... загружаем еще котиков ...</button>
       <app-loader v-if="storeKitties.isLoading"></app-loader>
     </app-container>
   </main>
@@ -19,7 +19,7 @@ import AppCard from "../components/AppCard.vue";
 import { useKittyStore } from "../stores/KittiesStore";
 import AppLoader from "../components/AppLoader.vue";
 const storeKitties = useKittyStore();
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 onMounted(async () => {
   storeKitties.getKitties();
 });
@@ -27,6 +27,12 @@ onMounted(async () => {
 function getMoreKitty() {
   storeKitties.getKitties();
 }
+
+const kittyList = ref(null);
+const observer = new IntersectionObserver(getMoreKitty,{
+
+});
+console.log(kittyList.value)
 </script>
 <script>
 export default {
@@ -35,11 +41,13 @@ export default {
 </script>
 <style lang="scss">
 .kitty-list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   list-style: none;
   column-gap: 31px;
   row-gap: 51px;
+  padding-left: 0;
 }
 
 .more-btn {
