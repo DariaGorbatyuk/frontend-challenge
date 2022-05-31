@@ -14,3 +14,6 @@ export const setItem = (key, value) => {
         console.error("error setting data to local storage");
     }
 };
+export const removeItem = (key)=>{
+    localStorage.removeItem(key)
+}

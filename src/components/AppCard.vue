@@ -40,9 +40,8 @@ const isHover = ref(false);
 .card {
   position: relative;
   z-index: 1;
-  width: 225px;
-  height: 225px;
   transition: all 300ms linear;
+  height: 100%;
 
   &:hover {
     box-shadow: 0 6px 5px rgba(0, 0, 0, 0.24), 0 9px 18px rgba(0, 0, 0, 0.18);
@@ -54,8 +53,8 @@ const isHover = ref(false);
   }
 
   img {
-    width: 225px;
-    height: 225px;
+    width: 100%;
+    height: 100%;
     max-width: 100%;
   }
 }
