@@ -31,6 +31,7 @@ export default {
 <style lang="scss">
 .header {
   background-color: var(--dodger-blue);
+  margin-bottom: 50px;
 }
 
 .header__list {

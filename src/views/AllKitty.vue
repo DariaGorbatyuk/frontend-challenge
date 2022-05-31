@@ -1,16 +1,14 @@
 <template>
   <main>
     <app-container>
-      <h1>Здесь все котики</h1>
+      <h1 class="visually-hidden">Здесь все котики</h1>
       <ul class="kitty-list">
         <li v-for="card in storeKitties.kittiesList" :key="card.id">
           <app-card :elem="card"></app-card>
         </li>
       </ul>
       <button class="more-btn" @click.prevent="getMoreKitty">... загружаем еще котиков ...</button>
-      <div class="loader" v-if="storeKitties.isLoading">
-        <img src="../assets/loader.svg" alt="Загрузка..." role="img" width="281" height="281"/>
-      </div>
+      <app-loader v-if="storeKitties.isLoading"></app-loader>
     </app-container>
   </main>
 </template>
@@ -19,10 +17,9 @@
 import AppContainer from "../components/AppContainer.vue";
 import AppCard from "../components/AppCard.vue";
 import { useKittyStore } from "../stores/KittiesStore";
-import { onMounted } from "vue";
-
+import AppLoader from "../components/AppLoader.vue";
 const storeKitties = useKittyStore();
-
+import { onMounted } from "vue";
 onMounted(async () => {
   storeKitties.getKitties();
 });
