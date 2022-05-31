@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
-import { TOKEN, LIMIT, URL_GET } from "../helpers/constant.js";
+import { TOKEN, URL_GET } from "../helpers/constant.js";
 
 export const useKittyStore = defineStore("KittiesStore", {
   state: () => ({
     kittiesList: [],
+    favoriteList: [],
     isLoading: false,
   }),
   getters: {
@@ -22,8 +23,14 @@ export const useKittyStore = defineStore("KittiesStore", {
       this.kittiesList = [...this.kittiesList, ...result];
       this.isLoading = false;
     },
-    increment() {
-      // this.counter++;
+    getState(id) {
+      return this.favoriteList.findIndex((kitty) => kitty.id === id);
+    },
+    addToFav(kitty) {
+      this.favoriteList.push(kitty);
+    },
+    removeFromFav(place) {
+      this.favoriteList.splice(place, 1);
     },
   },
 });

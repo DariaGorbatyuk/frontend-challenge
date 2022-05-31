@@ -7,7 +7,7 @@
           <app-card :elem="card"></app-card>
         </li>
       </ul>
-      <button class="more-btn" @click="getMoreKitty">... загружаем еще котиков ...</button>
+      <button class="more-btn" @click.prevent="getMoreKitty">... загружаем еще котиков ...</button>
       <div class="loader" v-if="storeKitties.isLoading">
         <img src="../assets/loader.svg" alt="Загрузка..." role="img" width="281" height="281"/>
       </div>
@@ -27,8 +27,7 @@ onMounted(async () => {
   storeKitties.getKitties();
 });
 
-function getMoreKitty(evt) {
-  evt.preventDefault()
+function getMoreKitty() {
   storeKitties.getKitties();
 }
 </script>

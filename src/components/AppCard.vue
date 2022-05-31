@@ -1,35 +1,33 @@
 <template>
   <div class="card">
     <img :src="elem.url" alt="Котик" :width="elem.width" :height="elem.height"/>
-    <button aria-label="heart" class="card__btn">
-      <icon-heart :state="stateHeart"></icon-heart>
+    <button aria-label="heart" class="card__btn" @click.prevent="toggleFavorite($event, elem)">
+      <icon-heart state="empty"></icon-heart>
     </button>
   </div>
 </template>
 
 <script>
-import IconHeart from "./icons/icon-heart.vue";
-import { computed } from "vue";
-
 export default {
   name: "AppCard",
-  props: {
-    elem: {
-      type: Object,
-      required: true,
-    },
-  },
-  components: {
-    IconHeart,
-  },
-  setup(props) {
-    const stateHeart = props.elem.isFavorite ? "" : "empty";
-
-    return {
-      stateHeart,
-    };
-  },
 };
+</script>
+<script setup>
+import IconHeart from "./icons/icon-heart.vue";
+import { useKittyStore } from "../stores/KittiesStore";
+
+const props = defineProps({
+  elem: {
+    type: Object,
+    required: true,
+  },
+});
+
+const kittyStore = useKittyStore();
+function toggleFavorite(evt, kitty) {
+  const state = kittyStore.getState(kitty.id);
+  state === -1 ? kittyStore.addToFav(kitty) : kittyStore.removeFromFav(state)
+}
 </script>
 
 <style lang="scss">
