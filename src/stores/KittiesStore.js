@@ -21,6 +21,7 @@ export const useKittyStore = defineStore("KittiesStore", {
       const result = await response.json();
       console.log(result);
       this.kittiesList = result;
+      this.isLoading = false
     },
     increment() {
       // this.counter++;

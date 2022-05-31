@@ -1,18 +1,19 @@
 <template>
   <the-header></the-header>
-  <RouterView />
+  <RouterView/>
 </template>
-<script lang="js">
+<script setup>
+import TheHeader from "./components/TheHeader.vue";
 
-import TheHeader from "./components/TheHeader.vue"
-
-export default {
-  components: {
-    TheHeader
-  }
-}
 </script>
 
 <style lang="scss">
 @import "./assets/base.css";
+
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>

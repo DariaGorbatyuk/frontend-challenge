@@ -3,31 +3,33 @@
     <app-container>
       <h1>Здесь все котики</h1>
       <ul class="kitty-list">
-        <li v-for="card in storeKittiesList.kittiesList" :key="card.id">
+        <li v-for="card in storeKitties.kittiesList" :key="card.id">
           <app-card :elem="card"></app-card>
         </li>
       </ul>
       <button class="more-btn">... загружаем еще котиков ...</button>
+      <div class="loader" v-if="storeKitties.isLoading">
+        <img src="../assets/loader.svg" alt="Загрузка..." role="img" width="281" height="281"/>
+      </div>
     </app-container>
   </main>
 </template>
 
 <script setup>
 import AppContainer from "../components/AppContainer.vue";
-import AppCard from '../components/AppCard.vue'
-import {useKittyStore} from '../stores/KittiesStore'
-import {onMounted} from "vue";
-const storeKittiesList = useKittyStore()
+import AppCard from "../components/AppCard.vue";
+import { useKittyStore } from "../stores/KittiesStore";
+import { onMounted } from "vue";
+const storeKitties = useKittyStore();
 
-
-onMounted(async ()=>{
-  storeKittiesList.getKitties()
-})
+onMounted(async () => {
+  storeKitties.getKitties();
+});
 </script>
 <script>
 export default {
-  name: 'all-kitty'
-}
+  name: "all-kitty",
+};
 </script>
 <style lang="scss">
 .kitty-list {
