@@ -7,7 +7,7 @@
           <app-card :elem="card"></app-card>
         </li>
       </ul>
-      <button class="more-btn">... загружаем еще котиков ...</button>
+      <button class="more-btn" @click="getMoreKitty">... загружаем еще котиков ...</button>
       <div class="loader" v-if="storeKitties.isLoading">
         <img src="../assets/loader.svg" alt="Загрузка..." role="img" width="281" height="281"/>
       </div>
@@ -20,11 +20,17 @@ import AppContainer from "../components/AppContainer.vue";
 import AppCard from "../components/AppCard.vue";
 import { useKittyStore } from "../stores/KittiesStore";
 import { onMounted } from "vue";
+
 const storeKitties = useKittyStore();
 
 onMounted(async () => {
   storeKitties.getKitties();
 });
+
+function getMoreKitty(evt) {
+  evt.preventDefault()
+  storeKitties.getKitties();
+}
 </script>
 <script>
 export default {
