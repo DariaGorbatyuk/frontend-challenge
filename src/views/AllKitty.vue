@@ -20,9 +20,6 @@ import { useKittyStore } from "../stores/KittiesStore";
 import AppLoader from "../components/AppLoader.vue";
 const storeKitties = useKittyStore();
 import { onMounted, ref } from "vue";
-onMounted(async () => {
-  storeKitties.getKitties();
-});
 
 function getMoreKitty() {
   storeKitties.getKitties();
@@ -35,6 +32,9 @@ const observer = new IntersectionObserver(getMoreKitty,{
 console.log(kittyList.value)
 </script>
 <script>
+import {useKittyStore} from "../stores/KittiesStore";
+import {onMounted} from "vue";
+
 export default {
   name: "all-kitty",
 };

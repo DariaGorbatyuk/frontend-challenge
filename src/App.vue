@@ -4,7 +4,9 @@
 </template>
 <script setup>
 import TheHeader from "./components/TheHeader.vue";
-
+import {useKittyStore} from "./stores/KittiesStore";
+const store = useKittyStore()
+store.getKitties()
 </script>
 
 <style lang="scss">
