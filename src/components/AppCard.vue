@@ -1,8 +1,9 @@
 <template>
   <div class="card">
     <img :src="elem.url" alt="Котик" :width="elem.width" :height="elem.height"/>
-    <button aria-label="heart" class="card__btn" @click.prevent="toggleFavorite($event, elem)">
-      <icon-heart state="empty"></icon-heart>
+    <button aria-label="heart" class="card__btn" @click.prevent="toggleFavorite($event, elem)" @mouseenter="isHover = true"
+            @mouseleave="isHover = false">
+      <icon-heart :isFav="elem.isFav" :isHover="isHover"></icon-heart>
     </button>
   </div>
 </template>
@@ -14,7 +15,8 @@ export default {
 </script>
 <script setup>
 import IconHeart from "./icons/icon-heart.vue";
-import { useKittyStore } from "../stores/KittiesStore";
+import {useKittyStore} from "../stores/KittiesStore";
+import {computed, ref} from "vue";
 
 const props = defineProps({
   elem: {
@@ -24,10 +26,14 @@ const props = defineProps({
 });
 
 const kittyStore = useKittyStore();
+
 function toggleFavorite(evt, kitty) {
   const state = kittyStore.getState(kitty.id);
-  state === -1 ? kittyStore.addToFav(kitty) : kittyStore.removeFromFav(state)
+  state === -1 ? kittyStore.addToFav(kitty) : kittyStore.removeFromFav(state, kitty)
 }
+
+
+const isHover = ref(false);
 </script>
 
 <style lang="scss">

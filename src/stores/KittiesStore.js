@@ -27,9 +27,11 @@ export const useKittyStore = defineStore("KittiesStore", {
       return this.favoriteList.findIndex((kitty) => kitty.id === id);
     },
     addToFav(kitty) {
+      kitty.isFav = true;
       this.favoriteList.push(kitty);
     },
-    removeFromFav(place) {
+    removeFromFav(place, kitty) {
+      kitty.isFav = false;
       this.favoriteList.splice(place, 1);
     },
   },
